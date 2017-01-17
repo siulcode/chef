@@ -9,8 +9,8 @@ CURRENTDIR=$PWD
 GITHUB_CREDS=~/.ssh/github.curl
 GITORG=DevOps-Cookbooks
 JENKINS_CONFIG=config.xml
-JENKINS_URL=http://djdo-jenkins01.dowjones.net:8080
-REPO_TEMPLATE=git@github.dowjones.net:DevOps-Cookbooks/cookbook-template.git
+JENKINS_URL=http://<INTERNAL-JENKINS>:8080
+REPO_TEMPLATE=git@<INTERNAL-GIT>:DevOps-Cookbooks/cookbook-template.git
 
 # Get user input for git repo
 echo "Enter the name for new github repo"
@@ -54,11 +54,11 @@ git commit -m "Created ${REPONAME} from template"
 
 # Curl some json to the github API
 # This creates a repo under a specific github org
-curl -K ${GITHUB_CREDS} https://github.dowjones.net/api/v3/orgs/$GITORG/repos -d "{\"name\": \"$REPONAME\", \"description\": \"${DESCRIPTION}\", \"has_issues\": true, \"has_downloads\": true, \"has_wiki\": false}"
+curl -K ${GITHUB_CREDS} https://<INTERNAL-GIT>/api/v3/orgs/$GITORG/repos -d "{\"name\": \"$REPONAME\", \"description\": \"${DESCRIPTION}\", \"has_issues\": true, \"has_downloads\": true, \"has_wiki\": false}"
 
 # Add remote to organizational unit repo
 sleep 3
-git remote add ${REPONAME} https://github.dowjones.net/$GITORG/$REPONAME.git
+git remote add ${REPONAME} https://<INTERNAL-GIT>/$GITORG/$REPONAME.git
 git push ${REPONAME} master
 
 cd $CURRENTDIR
