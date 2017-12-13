@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script creates a new repo on github.dowjones.net, then does a berks cookbook, pushes to it the remote repo from the current directory and creates a jenkins job with the same name.
+# This script creates a new repo on github.com, then does a berks cookbook, pushes to it the remote repo from the current directory and creates a jenkins job with the same name.
 # This script gets a username from .gitconfig.  If it indicates that your default username is an empty string, you can set it with
 # git config --add github.user YOUR_GIT_USERNAME
 
